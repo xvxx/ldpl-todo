@@ -6,6 +6,7 @@ dirt simple todos cli.
 
     $ todo -list             # list todos
     $ todo -add "Call Bob"   # add todo
+    $ todo -edit             # open todo file in $EDITOR
     $ todo -check 2          # check off todo
     $ todo -clear            # remove checked todos
 

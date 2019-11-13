@@ -114,6 +114,16 @@ procedure:
     call cmd.List
 end sub
 
+# todo -edit
+sub cmd.Edit
+local data:
+    cmd is text
+procedure:
+    in cmd join "$EDITOR" " " todo.File
+    display "-> " cmd crlf
+    execute cmd
+end sub 
+
 # todo -help
 sub cmd.Help
     display "Usage:" crlf
@@ -182,6 +192,8 @@ procedure:
         call cmd.Check
     else if cmd is equal to "-clear" or cmd is equal to "-d" then
         call cmd.Clear
+    else if cmd is equal to "-edit" or cmd is equal to "-e" then
+        call cmd.Edit
     else if cmd is equal to "-list" or cmd is equal to "-l" then
         call cmd.List
     else if cmd is equal to "-help" or cmd is equal to "-h" then
