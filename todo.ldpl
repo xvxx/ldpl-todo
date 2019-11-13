@@ -184,9 +184,7 @@ procedure:
         end if 
     end if
 
-    if size is equal to 0 then 
-        call cmd.Help
-    else if cmd is equal to "-add" or cmd is equal to "-a" then
+    if cmd is equal to "-add" or cmd is equal to "-a" then
         call cmd.Add
     else if cmd is equal to "-check" or cmd is equal to "-c" then
         call cmd.Check
@@ -200,6 +198,8 @@ procedure:
         call cmd.Help
     else if cmd is equal to "-version" or cmd is equal to "-v" then
         call cmd.Version
+    else 
+        call cmd.Help
     end if
 end sub
 
