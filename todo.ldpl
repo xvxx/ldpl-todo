@@ -1,0 +1,175 @@
+USING PACKAGE std-list
+
+DATA:
+    todo.File is text 
+    todo.List is text list
+
+PROCEDURE:
+store "~/.todo" in todo.File
+
+sub todo.Load
+local data:
+    content is text 
+    lines is text list 
+procedure:
+    load file todo.File in content 
+    split content by "\n" in todo.List
+end sub
+
+sub todo.Save
+local data:
+    file is text 
+    line is text
+    cmd is text
+    out is text 
+procedure:
+    in file join todo.File ".tmp"
+    for each line in todo.List do 
+        trim line in out 
+        if out is equal to "" then 
+            continue
+        end if 
+        in out join line "\n"
+        append out to file file
+    repeat
+    append crlf to file file
+    in cmd join "mv" " " file " " todo.File
+    execute cmd
+end sub
+
+# todo -add "do something"
+sub cmd.Add
+local data:
+    argc is number
+procedure:
+    get length of argv in argc
+    if argc is less than 2 then 
+        display "-> nothing to add" crlf
+        return
+    end if
+    call todo.Load
+    push argv:1 to todo.List
+    call todo.Save
+    display "-> added \"" argv:1 "\"" crlf
+end sub 
+
+# todo -check 
+sub cmd.Check
+local data:
+    num is number
+    count is number
+    prefix is text
+    todo is text 
+procedure:
+    get length of argv in count
+    if count is less than 2 then 
+        display "-> give me a # to check off" crlf 
+        return
+    end if 
+    call todo.Load
+    get length of todo.List in count
+    store argv:1 in num
+    if num is greater than count or num is less than 1 then 
+        display "-> can't find todo #" num crlf 
+        return
+    end if
+    in num solve num - 1
+    store todo.List:num in todo 
+    get length of todo in count
+    substring todo from 0 length 2 in prefix
+    if prefix is equal to "X " then
+        substring todo from 2 length count in todo
+    else
+        in todo join "X " todo
+    end if
+    store todo in todo.List:num 
+    call todo.Save
+    call cmd.List
+end sub
+
+# todo -clear
+sub cmd.Clear
+local data:
+    todo is text
+    todos is text list
+    prefix is text
+procedure:
+    call todo.Load
+    for each todo in todo.List do 
+        substring todo from 0 length 2 in prefix
+        if prefix is not equal to "X " then
+            push todo to todos
+        end if
+    repeat
+    copy todos to todo.List
+    call todo.Save
+    call cmd.List
+end sub
+
+# todo -help
+sub cmd.Help
+    display "Usage:" crlf
+    display "\ttodo <COMMAND>" crlf crlf 
+    display "Commands:" crlf
+    display "\t-add \"todo\"" "\t" "add todo item" crlf 
+    display "\t-check <ID>" "\t" "check off todo item" crlf 
+    display "\t-clear" "\t\t" "clear checked todos" crlf 
+    display "\t-list" "\t\t" "list todos" crlf 
+    display "\t-version" "\t" "show verion" crlf 
+end sub
+
+# todo -list
+sub cmd.List
+local data:
+    todo is text
+    i is number
+procedure:
+    call todo.Load 
+    for each todo in todo.List do
+        trim todo in todo
+        if todo is equal to "" then 
+            continue
+        end if 
+        in i solve i + 1
+        display i ". " todo "\n"
+    repeat
+end sub
+
+# todo -version
+sub cmd.Version
+    display "ldpl-todo 0.0.0-dev" crlf 
+end sub
+
+sub Main 
+local data:
+    size is number
+    cmd is text
+    prefix is text
+procedure:
+    get length of argv in size
+    if size is greater than 0 then
+        store argv:0 in cmd
+        get character at 0 from cmd in prefix # support --flags too
+        if prefix is equal to "-" then 
+            replace "--" from cmd with "-" in cmd
+        end if 
+    end if
+
+    if size is equal to 0 then 
+        call cmd.Help
+    else if cmd is equal to "-add" or cmd is equal to "-a" then
+        call cmd.Add
+    else if cmd is equal to "-check" or cmd is equal to "-c" then
+        call cmd.Check
+    else if cmd is equal to "-clear" or cmd is equal to "-d" then
+        call cmd.Clear
+    else if cmd is equal to "-list" or cmd is equal to "-l" then
+        call cmd.List
+    else if cmd is equal to "-help" or cmd is equal to "-h" then
+        call cmd.Help
+    else if cmd is equal to "-version" or cmd is equal to "-v" then
+        call cmd.Version
+    end if
+end sub
+
+call Main
