@@ -41,6 +41,8 @@ end sub
 sub cmd.Add
 local data:
     argc is number
+    i is number
+    todo is text
 procedure:
     get length of argv in argc
     if argc is less than 2 then 
@@ -48,9 +50,15 @@ procedure:
         return
     end if
     call todo.Load
-    push argv:1 to todo.List
+    store 1 in i 
+    while i is less than argc do
+        in todo join todo " " argv:i
+        in i solve i + 1
+    repeat
+    trim todo in todo
+    push todo to todo.List
     call todo.Save
-    display "-> added \"" argv:1 "\"" crlf
+    display "-> added \"" todo "\"" crlf
 end sub 
 
 # todo -check 
