@@ -23,18 +23,15 @@ local data:
     cmd is text
     out is text 
 procedure:
-    in file join todo.File ".tmp"
     for each line in todo.List do 
-        trim line in out 
-        if out is equal to "" then 
+        trim line in line
+        if line is equal to "" then 
             continue
         end if 
-        in out join line "\n"
-        append out to file file
+        in out join out line "\n"
     repeat
-    append crlf to file file
-    in cmd join "mv" " " file " " todo.File
-    execute cmd
+    write out to file todo.File
+    append crlf to file todo.File
 end sub
 
 # todo -add "do something"
