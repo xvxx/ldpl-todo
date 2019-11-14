@@ -14,9 +14,30 @@ all commands have single letter versions too.
 
 -add is -a, -edit is -e, etc.  check is -c. clear is -d.
 
+## example:
+
+    $ todo -list
+    -> no todos in ~/.todo
+    $ todo -add Show example usage
+    -> added "Show example usage"
+    $ todo -add Eat a Pop Tart
+    -> added "Eat a Pop Tart"
+    $ todo -list
+      1. Show example usage
+      2. Eat a Pop Tart
+    $ todo -add Write a poem about dinosaurs
+    -> added "Write a poem about dinosaurs"
+    $ todo -check 2
+      1. Show example usage
+    X 2. Eat a Pop Tart
+      3. Write a poem about dinosaurs
+    $ todo -clear
+      1. Show example usage
+      2. Write a poem about dinosaurs
+
 ## install:
 
-requires [ldpl 4.3](https://github.com/Lartu/ldpl/tree/4.3)
+requires [ldpl 4.3](https://github.com/Lartu/ldpl/tree/4.3):
 
     lpm install std-list
     ldpl todo.ldpl -o=todo
@@ -32,7 +53,7 @@ lines beginning with "X " are treated as checked.
 
 # wrapper:
 
-i use a tiny fish wrapper around this library, found in [t.fish](./t.fish):
+i use a tiny fish wrapper with this program, [t.fish](./t.fish):
 
     $ t                # todo -list
     $ t "Call Terry"   # todo -add "Call Terry"
