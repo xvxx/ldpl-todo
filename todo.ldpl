@@ -159,6 +159,9 @@ procedure:
         in i solve i + 1
         display spacer " " i ". " todo "\n"
     repeat
+    if i is equal to 0 then
+        display "-> no todos in " todo.File crlf
+    end if
 end sub
 
 # todo -version
