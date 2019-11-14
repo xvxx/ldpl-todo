@@ -10,13 +10,17 @@ dirt simple todos cli.
     $ todo -check 2          # check off todo
     $ todo -clear            # remove checked todos
 
+all commands have single letter versions too.
+
+-add is -a, -edit is -e, etc.  check is -c. clear is -d.
+
 ## install:
+
+requires [ldpl 4.3](https://github.com/Lartu/ldpl/tree/4.3)
 
     lpm install std-list
     ldpl todo.ldpl -o=todo
     cp todo ~/bin
-
-requires ldpl 4.3
 
 ## todo.txt:
 
