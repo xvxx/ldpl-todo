@@ -25,3 +25,13 @@ this tool stores todos in ~/.todo
 it is a plain text file with one todo per line.
 
 lines beginning with "X " are treated as checked.
+
+# wrapper:
+
+i use a tiny fish wrapper around this library, found in [t.fish](./t.fish):
+
+    $ t                # todo -list
+    $ t "Call Terry"   # todo -add "Call Terry"
+    $ t 2              # todo -check 2
+    $ t -d             # todo -d
+
