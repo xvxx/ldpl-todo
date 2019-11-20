@@ -157,6 +157,9 @@ procedure:
             store " " in spacer
         end if
         in i solve i + 1
+        if i is less than 10 then
+            in spacer join spacer " "
+        end if
         display spacer " " i ". " todo "\n"
     repeat
     if i is equal to 0 then
