@@ -9,7 +9,7 @@
 function t
   if not type -q todo
     echo "> can't find `todo` in PATH"
-    return
+    return 1
   end
   if [ -z "$argv" ]  # no arguments
     todo -list
