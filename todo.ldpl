@@ -143,10 +143,19 @@ local data:
     end is number
 procedure:
     call todo.Load
+    store 1 in 1st
     for each todo in todo.List do
+        store 0 in header
         trim todo in todo
         if todo is equal to "" then
             continue
+        end if
+        get character at 0 from todo in prefix
+        if prefix is equal to "#" then
+            store 1 in header
+            if 1st is not equal to 1 then
+                display crlf
+            end if
         end if
         substring todo from 0 length 2 in prefix
         get length of todo in end
@@ -160,7 +169,12 @@ procedure:
         if i is less than 10 then
             in spacer join spacer " "
         end if
-        display spacer " " i ". " todo "\n"
+        if header is equal to 1 then
+            display spacer " " i ". \e[93m" todo "\e[0m\n"
+        else
+            display spacer " " i ". " todo "\n"
+        end if
+        store 0 in 1st
     repeat
     if i is equal to 0 then
         display "-> no todos in " todo.File crlf
