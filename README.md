@@ -49,9 +49,40 @@ this tool stores todos in ~/.todo
 
 it is a plain text file with one todo per line.
 
-lines beginning with "X " are treated as checked.
+lines that begin with "X " (X and space) are treated as checked.
 
-# wrapper:
+lines that begin with "#" are treated as headers.
+
+for example:
+
+    $ cat ~/.todo
+    #ldpl-todo
+    finish README
+    X write up an example
+    take screenshots?
+    #ldpl
+    upgrade servers at work to 4.3
+    X test time travel feature
+    #lute
+    test ncurses on mac
+    add sound
+
+becomes:
+
+          #ldpl-todo
+       2. finish README
+    X  3. write up an example
+       4. take screenshots?
+    
+          #ldpl
+       6. upgrade servers at work to 4.3
+    X  7. test time travel feature
+    
+          #lute
+       9. test ncurses on mac
+      10. add sound
+
+## wrapper:
 
 i use a tiny fish wrapper with this program, [t.fish](./t.fish):
 
