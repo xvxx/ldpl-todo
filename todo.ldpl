@@ -123,14 +123,15 @@ end sub
 
 # todo -help
 sub cmd.Help
-    display "Usage:" crlf
+    display "Usage:" crlf crlf
     display "\ttodo <COMMAND>" crlf crlf
-    display "Commands:" crlf
+    display "Commands:" crlf crlf
     display "\t-add \"todo\"" "\t" "add todo item" crlf
     display "\t-check <ID>" "\t" "check off todo item" crlf
     display "\t-clear" "\t\t" "clear checked todos" crlf
     display "\t-list" "\t\t" "list todos" crlf
     display "\t-version" "\t" "show version" crlf
+    display crlf
 end sub
 
 # todo -list
