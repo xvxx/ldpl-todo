@@ -162,19 +162,21 @@ procedure:
                 display crlf
             end if
         end if
+        in i solve i + 1
         substring todo from 0 length 2 in prefix
         get length of todo in end
         if prefix is equal to "X " then
             store "X" in spacer
             substring todo from 2 length end in todo
-        else
+        else if i is less than 10 then 
+            store "  " in spacer
+        else 
             store " " in spacer
         end if
-        in i solve i + 1
-        if i is less than 10 then
-            in spacer join spacer " "
-        end if
         if header is equal to 1 then
+            if i is greater than or equal to 10 then
+                display " "
+            end if
             display spacer "    \e[93m" todo "\e[0m\n"
         else
             display spacer " " i ". " todo "\n"
