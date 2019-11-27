@@ -139,6 +139,7 @@ local data:
     todo is text
     i is number
     prefix is text
+    prefix2 is text
     spacer is text
     end is number
     1st is number
@@ -153,7 +154,8 @@ procedure:
             continue
         end if
         get character at 0 from todo in prefix
-        if prefix is equal to "#" then
+        substring todo from 0 length 3 in prefix2
+        if prefix is equal to "#" or prefix2 is equal to "X #" then
             store 1 in header
             if 1st is not equal to 1 then
                 display crlf
@@ -172,7 +174,7 @@ procedure:
             in spacer join spacer " "
         end if
         if header is equal to 1 then
-            display "      \e[93m" todo "\e[0m\n"
+            display spacer "    \e[93m" todo "\e[0m\n"
         else
             display spacer " " i ". " todo "\n"
         end if
