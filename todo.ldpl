@@ -166,12 +166,12 @@ procedure:
         substring todo from 0 length 2 in prefix
         get length of todo in end
         if prefix is equal to "X " then
-            store "X" in spacer
+            store "\e[90mX" in spacer
             substring todo from 2 length end in todo
         else if i is less than 10 then 
-            store "  " in spacer
+            store "\e[0m  " in spacer
         else 
-            store " " in spacer
+            store "\e[0m " in spacer
         end if
         if header is equal to 1 then
             if i is greater than or equal to 10 then
