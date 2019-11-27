@@ -174,10 +174,17 @@ procedure:
             store "\e[0m " in spacer
         end if
         if header is equal to 1 then
+            display spacer
             if i is greater than or equal to 10 then
                 display " "
             end if
-            display spacer "    \e[93m" todo "\e[0m\n"
+            display "    "
+            if prefix is equal to "X " then
+                display "\e[90m"
+            else
+                display "\e[93m"
+            end if
+            display todo "\e[0m\n"
         else
             display spacer " " i ". " todo "\n"
         end if
