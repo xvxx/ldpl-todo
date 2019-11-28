@@ -79,11 +79,11 @@ becomes:
        2. finish README
     X  3. write up an example
        4. take screenshots?
-    
+
           #ldpl
        6. upgrade servers at work to 4.3
     X  7. test time travel feature
-    
+
           #lute
        9. test ncurses on mac
       10. add sound
