@@ -5,7 +5,11 @@ DATA:
     todo.List is text list
 
 PROCEDURE:
-store "~/.todo" in todo.File
+execute "echo $TODO" and store output in todo.File
+trim todo.File in todo.File
+if todo.File is equal to "" then
+  store "~/.todo" in todo.File
+end if
 
 sub todo.Load
 local data:
@@ -168,9 +172,9 @@ procedure:
         if prefix is equal to "X " then
             store "\e[90mX" in spacer
             substring todo from 2 length end in todo
-        else if i is less than 10 then 
+        else if i is less than 10 then
             store "\e[0m  " in spacer
-        else 
+        else
             store "\e[0m " in spacer
         end if
         if header is equal to 1 then

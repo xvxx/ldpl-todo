@@ -51,9 +51,13 @@ requires [ldpl 4.3](https://github.com/Lartu/ldpl/tree/4.3):
 
 ## todo.txt:
 
-this tool stores todos in ~/.todo
+this tool stores todos in ~/.todo by default.
 
-it is a plain text file with one todo per line.
+to use a different todo file, set the env variable TODO:
+
+   env TODO=~/work/todo.txt todo -list
+
+in either case, the todo db is a plain text file with one todo per line.
 
 lines that begin with "X " (X and space) are treated as checked.
 
