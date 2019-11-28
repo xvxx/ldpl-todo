@@ -10,27 +10,33 @@ dirt simple todos cli.
     $ todo -check 2          # check off todo
     $ todo -clear            # remove checked todos
 
-all commands have single letter versions too.
+all commands have single letter versions:
 
--add is -a, -edit is -e, etc.  check is -c. clear is -d.
+-add is -a, -edit is -e, etc. check is -c. clear is -d.
 
 ## example:
 
     $ todo -list
     -> no todos in ~/.todo
+
     $ todo -add Show example usage
     -> added "Show example usage"
+
     $ todo -add Eat a Pop Tart
     -> added "Eat a Pop Tart"
+
     $ todo -list
       1. Show example usage
       2. Eat a Pop Tart
+
     $ todo -add Write a poem about dinosaurs
     -> added "Write a poem about dinosaurs"
+
     $ todo -check 2
       1. Show example usage
     X 2. Eat a Pop Tart
       3. Write a poem about dinosaurs
+
     $ todo -clear
       1. Show example usage
       2. Write a poem about dinosaurs
