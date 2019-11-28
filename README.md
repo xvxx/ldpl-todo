@@ -55,7 +55,7 @@ this tool stores todos in ~/.todo by default.
 
 to use a different todo file, set the env variable TODO:
 
-   env TODO=~/work/todo.txt todo -list
+    env TODO=~/work/todo.txt todo -list
 
 in either case, the todo db is a plain text file with one todo per line.
 
