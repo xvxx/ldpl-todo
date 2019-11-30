@@ -5,7 +5,7 @@ install: build
 
 build: todo
 
-todo:
+todo: todo.ldpl
 	ldpl todo.ldpl -f=-O2 -o=todo
 
 clean:
