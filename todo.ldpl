@@ -3,8 +3,11 @@ USING PACKAGE std-list
 DATA:
     todo.File is text
     todo.List is text list
+    VERSION is text
 
 PROCEDURE:
+store "1.0.0" in VERSION
+
 execute "echo $TODO" and store output in todo.File
 trim todo.File in todo.File
 if todo.File is equal to "" then
@@ -202,7 +205,7 @@ end sub
 
 # todo -version
 sub cmd.Version
-    display "ldpl-todo 0.0.0-dev" crlf
+    display "ldpl-todo v" VERSION crlf
 end sub
 
 sub Main
