@@ -7,7 +7,7 @@ dirt simple todos cli.
     $ todo -list             # list todos
     $ todo -add "Call Bob"   # add todo
     $ todo -edit             # open todo file in $EDITOR
-    $ todo -check 2          # check off todo
+    $ todo -check 2          # check off one or more todos
     $ todo -clear            # remove checked todos
 
 all commands have single letter versions:
@@ -40,6 +40,10 @@ all commands have single letter versions:
     $ todo -clear
       1. Show example usage
       2. Write a poem about dinosaurs
+
+    $ todo -check 1 2
+    X 1. Show example usage
+    X 2. Write a poem about dinosaurs
 
 ## install:
 

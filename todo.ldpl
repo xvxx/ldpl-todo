@@ -70,31 +70,37 @@ sub cmd.Check
 local data:
     num is number
     count is number
+    argc is number
     prefix is text
     todo is text
+    i is number
 procedure:
-    get length of argv in count
-    if count is less than 2 then
+    get length of argv in argc
+    if argc is less than 2 then
         display "-> give me a # to check off" crlf
         return
     end if
     call todo.Load
     get length of todo.List in count
-    store argv:1 in num
-    if num is greater than count or num is less than 1 then
-        display "-> can't find todo #" num crlf
-        return
-    end if
-    in num solve num - 1
-    store todo.List:num in todo
-    get length of todo in count
-    substring todo from 0 length 2 in prefix
-    if prefix is equal to "X " then
-        substring todo from 2 length count in todo
-    else
-        in todo join "X " todo
-    end if
-    store todo in todo.List:num
+    store 1 in i
+    while i is less than argc do 
+        store argv:i in num
+        if num is greater than or equal to count or num is less than 1 then
+            display "-> can't find todo #" num crlf
+            return
+        end if
+        in num solve num - 1
+        store todo.List:num in todo
+        get length of todo in count
+        substring todo from 0 length 2 in prefix
+        if prefix is equal to "X " then
+            substring todo from 2 length count in todo
+        else
+            in todo join "X " todo
+        end if
+        store todo in todo.List:num
+        in i solve i + 1
+    repeat
     call todo.Save
     call cmd.List
 end sub
@@ -134,7 +140,7 @@ sub cmd.Help
     display "\ttodo <COMMAND>" crlf crlf
     display "Commands:" crlf crlf
     display "\t-add \"todo\"" "\t" "add todo item" crlf
-    display "\t-check <ID>" "\t" "check off todo item" crlf
+    display "\t-check <ID>" "\t" "check off one or more todo items" crlf
     display "\t-clear" "\t\t" "clear checked todos" crlf
     display "\t-list" "\t\t" "list todos" crlf
     display "\t-version" "\t" "show version" crlf
