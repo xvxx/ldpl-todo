@@ -6,7 +6,7 @@ DATA:
     VERSION is text
 
 PROCEDURE:
-store "1.0.0" in VERSION
+store "1.0.1" in VERSION
 
 execute "echo $TODO" and store output in todo.File
 trim todo.File in todo.File
@@ -83,7 +83,7 @@ procedure:
     call todo.Load
     get length of todo.List in count
     store 1 in i
-    while i is less than argc do 
+    while i is less than argc do
         store argv:i in num
         if num is greater than or equal to count or num is less than 1 then
             display "-> can't find todo #" num crlf
