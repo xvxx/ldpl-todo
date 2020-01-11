@@ -1,5 +1,3 @@
-# wrapper for https://github.com/dvkt/ldpl-todo
-#
 # usage:
 #   t             # todo -list
 #   t "fix app"   # todo -add "fix app"
