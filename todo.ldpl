@@ -156,11 +156,11 @@ local data:
     prefix2 is text
     spacer is text
     end is number
-    1st is number
+    first is number
     header is number
 procedure:
     call todo.Load
-    store 1 in 1st
+    store 1 in first
     for each todo in todo.List do
         store 0 in header
         trim todo in todo
@@ -171,7 +171,7 @@ procedure:
         substring todo from 0 length 3 in prefix2
         if prefix is equal to "#" or prefix2 is equal to "X #" then
             store 1 in header
-            if 1st is not equal to 1 then
+            if first is not equal to 1 then
                 display crlf
             end if
         end if
@@ -202,7 +202,7 @@ procedure:
         else
             display spacer " " i ". " todo "\n"
         end if
-        store 0 in 1st
+        store 0 in first
     repeat
     if i is equal to 0 then
         display "-> no todos in " todo.File crlf
